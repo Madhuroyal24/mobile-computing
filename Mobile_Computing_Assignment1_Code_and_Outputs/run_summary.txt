@@ -1,0 +1,1 @@
+Seed: 20261102\nMonte Carlo samples per strategy: 10000\nHexagonal cell area at R=0.5 km: 0.6495 km^2\nApproximate reference cell count: 19\nStadium offered traffic: 1250.0 Erlangs\nExecution time: 1.26 seconds\nMonte Carlo SIR, analytical SIR and Erlang-B blocking are distinct measures.
