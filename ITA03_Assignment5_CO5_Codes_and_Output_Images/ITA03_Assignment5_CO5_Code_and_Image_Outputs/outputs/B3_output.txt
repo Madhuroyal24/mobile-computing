@@ -1,0 +1,29 @@
+B3 – EXACT vs ADAPTIVE FEED RENDERER
+
+CASE 1: items=4, profile={'frame_capacity': 12, 'cache_limit': 2, 'battery': 80, 'visual_weight': 1.0, 'cache_energy': 0.8}
+EXACT: cost=6.2, quality=HIGH, cache=1, configurations_evaluated=9
+ADAPTIVE: cost=7.0, quality=HIGH, cache=2, quality/cache_changes=2, evictions=0
+MATCH=False
+
+CASE 2: items=7, profile={'frame_capacity': 15, 'cache_limit': 2, 'battery': 65, 'visual_weight': 1.2, 'cache_energy': 0.8}
+EXACT: cost=15.5, quality=MEDIUM, cache=1, configurations_evaluated=9
+ADAPTIVE: cost=16.3, quality=MEDIUM, cache=2, quality/cache_changes=1, evictions=0
+MATCH=False
+
+CASE 3: items=5, profile={'frame_capacity': 5, 'cache_limit': 1, 'battery': 20, 'visual_weight': 0.7, 'cache_energy': 0.8}
+EXACT: cost=10.05, quality=LOW, cache=1, configurations_evaluated=9
+ADAPTIVE: cost=10.05, quality=LOW, cache=1, quality/cache_changes=1, evictions=0
+MATCH=True
+
+COUNTEREXAMPLE: items=6, profile={'frame_capacity': 18, 'cache_limit': 3, 'battery': 25, 'visual_weight': 2.0, 'cache_energy': 0.4}
+EXACT: cost=8.5, quality=HIGH, cache=1, configurations_evaluated=9
+ADAPTIVE: cost=17.8, quality=MEDIUM, cache=1, quality/cache_changes=0, evictions=0
+MATCH=False
+
+SCALABILITY
+items=5: exact_configurations=9, adaptive_decisions=3
+items=20: exact_configurations=9, adaptive_decisions=3
+items=100: exact_configurations=9, adaptive_decisions=3
+items=500: exact_configurations=9, adaptive_decisions=2
+
+Note: This is a deterministic simulation cost model, not a measurement from a physical phone.

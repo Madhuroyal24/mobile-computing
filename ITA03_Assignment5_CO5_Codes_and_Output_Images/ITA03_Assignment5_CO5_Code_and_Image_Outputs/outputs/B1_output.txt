@@ -1,0 +1,88 @@
+B1 – BACKGROUND WORK SCHEDULER
+Priority rule: critical jobs first, then higher priority, then job ID.
+
+[GOOD | FIFO]
+ENQUEUED=5
+DECISION 1: job=J1, battery=82%, network=Wi-Fi, doze=False, permission=True
+J1: UPLOADED
+DECISION 2: job=J2, battery=82%, network=Wi-Fi, doze=False, permission=True
+J2: UPLOADED
+DECISION 3: job=J3, battery=82%, network=Wi-Fi, doze=False, permission=True
+J3: UPLOADED
+DECISION 4: job=J4, battery=82%, network=Wi-Fi, doze=False, permission=True
+J4: UPLOADED
+DECISION 5: job=J5, battery=82%, network=Wi-Fi, doze=False, permission=True
+J5: UPLOADED
+SUMMARY: enqueued=5, deferred=0, cancelled=0, successful=5, max_workers=1, backlog=0
+
+[GOOD | PRIORITY]
+ENQUEUED=5
+DECISION 1: job=J2, battery=82%, network=Wi-Fi, doze=False, permission=True
+J2: UPLOADED
+DECISION 2: job=J4, battery=82%, network=Wi-Fi, doze=False, permission=True
+J4: UPLOADED
+DECISION 3: job=J5, battery=82%, network=Wi-Fi, doze=False, permission=True
+J5: UPLOADED
+DECISION 4: job=J3, battery=82%, network=Wi-Fi, doze=False, permission=True
+J3: UPLOADED
+DECISION 5: job=J1, battery=82%, network=Wi-Fi, doze=False, permission=True
+J1: UPLOADED
+SUMMARY: enqueued=5, deferred=0, cancelled=0, successful=5, max_workers=1, backlog=0
+
+[LOW_BATTERY | FIFO]
+ENQUEUED=5
+DECISION 1: job=J1, battery=8%, network=Wi-Fi, doze=True, permission=True
+J1: DEFERRED (battery/Doze constraint)
+DECISION 2: job=J2, battery=8%, network=Wi-Fi, doze=True, permission=True
+J2: DEFERRED (battery/Doze constraint)
+DECISION 3: job=J3, battery=8%, network=Wi-Fi, doze=True, permission=True
+J3: DEFERRED (battery/Doze constraint)
+DECISION 4: job=J4, battery=8%, network=Wi-Fi, doze=True, permission=True
+J4: DEFERRED (battery/Doze constraint)
+DECISION 5: job=J5, battery=8%, network=Wi-Fi, doze=True, permission=True
+J5: DEFERRED (battery/Doze constraint)
+SUMMARY: enqueued=5, deferred=5, cancelled=0, successful=0, max_workers=1, backlog=5
+
+[LOW_BATTERY | PRIORITY]
+ENQUEUED=5
+DECISION 1: job=J2, battery=8%, network=Wi-Fi, doze=True, permission=True
+J2: DEFERRED (battery/Doze constraint)
+DECISION 2: job=J4, battery=8%, network=Wi-Fi, doze=True, permission=True
+J4: DEFERRED (battery/Doze constraint)
+DECISION 3: job=J5, battery=8%, network=Wi-Fi, doze=True, permission=True
+J5: DEFERRED (battery/Doze constraint)
+DECISION 4: job=J3, battery=8%, network=Wi-Fi, doze=True, permission=True
+J3: DEFERRED (battery/Doze constraint)
+DECISION 5: job=J1, battery=8%, network=Wi-Fi, doze=True, permission=True
+J1: DEFERRED (battery/Doze constraint)
+SUMMARY: enqueued=5, deferred=5, cancelled=0, successful=0, max_workers=1, backlog=5
+
+[PERMISSION_REVOKED | FIFO]
+ENQUEUED=5
+DECISION 1: job=J1, battery=70%, network=Wi-Fi, doze=False, permission=True
+J1: UPLOADED
+DECISION 2: job=J2, battery=70%, network=Wi-Fi, doze=False, permission=True
+EVENT: permission revoked while processing
+J2: CANCELLED (permission unavailable)
+DECISION 3: job=J3, battery=70%, network=Wi-Fi, doze=False, permission=False
+J3: CANCELLED (permission unavailable)
+DECISION 4: job=J4, battery=70%, network=Wi-Fi, doze=False, permission=False
+J4: CANCELLED (permission unavailable)
+DECISION 5: job=J5, battery=70%, network=Wi-Fi, doze=False, permission=False
+J5: CANCELLED (permission unavailable)
+SUMMARY: enqueued=5, deferred=0, cancelled=4, successful=1, max_workers=1, backlog=0
+
+[PERMISSION_REVOKED | PRIORITY]
+ENQUEUED=5
+DECISION 1: job=J2, battery=70%, network=Wi-Fi, doze=False, permission=True
+J2: UPLOADED
+DECISION 2: job=J4, battery=70%, network=Wi-Fi, doze=False, permission=True
+EVENT: permission revoked while processing
+J4: CANCELLED (permission unavailable)
+DECISION 3: job=J5, battery=70%, network=Wi-Fi, doze=False, permission=False
+J5: CANCELLED (permission unavailable)
+DECISION 4: job=J3, battery=70%, network=Wi-Fi, doze=False, permission=False
+J3: CANCELLED (permission unavailable)
+DECISION 5: job=J1, battery=70%, network=Wi-Fi, doze=False, permission=False
+J1: CANCELLED (permission unavailable)
+SUMMARY: enqueued=5, deferred=0, cancelled=4, successful=1, max_workers=1, backlog=0

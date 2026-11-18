@@ -1,0 +1,28 @@
+B4 – MULTIMEDIA ENCODING DECISION
+
+DEVICE: Entry phone | CPU=LOW | battery=22% | network=1.5 Mbps
+SELECTED: 480p, 1.0 Mbps, upload=NOW
+ESTIMATED: file=2.5 MB, encode+upload=20.33 s, energy_index=1.19, remaining_battery_est=21.86%
+
+DEVICE: Mid-range phone | CPU=MID | battery=55% | network=4.0 Mbps
+SELECTED: 720p, 2.0 Mbps, upload=NOW
+ESTIMATED: file=5.0 MB, encode+upload=18.0 s, energy_index=1.49, remaining_battery_est=54.82%
+
+DEVICE: Flagship phone | CPU=HIGH | battery=85% | network=12.0 Mbps
+SELECTED: 1080p, 4.0 Mbps, upload=NOW
+ESTIMATED: file=10.0 MB, encode+upload=14.67 s, energy_index=2.01, remaining_battery_est=84.76%
+
+DEVICE: Fast Wi-Fi, low battery | CPU=HIGH | battery=16% | network=30.0 Mbps
+SELECTED: 480p, 1.0 Mbps, upload=DEFER / CHARGE FIRST
+ESTIMATED: file=2.5 MB, encode+upload=2.67 s, energy_index=0.48, remaining_battery_est=15.94%
+
+CHALLENGE INPUT
+Fast Wi-Fi + flagship CPU + 16% battery: the rule selects 480p because low battery is a hard constraint.
+A rule based only on CPU/network would choose 1080p and could consume too much energy.
+
+DECISION NOTE
+Use this bounded heuristic for quick on-device decisions; it does not guarantee global minimum energy.
+Exhaustive search is suitable for offline tuning of a small device-profile set, not per-upload decisions at scale.
+Monitor encode time, upload completion, battery change, thermal state, bitrate, frame drops and failures.
+
+Note: Energy and battery values are illustrative model estimates, not measured phone telemetry.

@@ -1,0 +1,52 @@
+B2 – ADVERSARIAL WORKLOAD COMPARISON
+Prediction: the difficult workload will defer more often because it repeatedly violates battery, Doze or network constraints.
+
+WORKLOAD A – EASY: 10 records (same size)
+item 01: battery=75%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 02: battery=72%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 03: battery=68%, doze=False, permission=True, network=Mobile
+  -> DELIVERED
+item 04: battery=65%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 05: battery=60%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 06: battery=58%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 07: battery=55%, doze=False, permission=True, network=Mobile
+  -> DELIVERED
+item 08: battery=52%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 09: battery=50%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+item 10: battery=48%, doze=False, permission=True, network=Wi-Fi
+  -> DELIVERED
+RESULT: processed=10, deferrals=0, retries=0, cancelled=0, delivered=10
+
+WORKLOAD B – ADVERSARIAL: 10 records (same size)
+item 01: battery=09%, doze=True, permission=True, network=Wi-Fi
+  -> DEFERRED; retry when constraints improve
+item 02: battery=08%, doze=True, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 03: battery=12%, doze=False, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 04: battery=10%, doze=True, permission=True, network=Wi-Fi
+  -> DEFERRED; retry when constraints improve
+item 05: battery=07%, doze=True, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 06: battery=13%, doze=False, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 07: battery=11%, doze=True, permission=True, network=Wi-Fi
+  -> DEFERRED; retry when constraints improve
+item 08: battery=06%, doze=True, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 09: battery=14%, doze=False, permission=True, network=OFFLINE
+  -> DEFERRED; retry when constraints improve
+item 10: battery=05%, doze=True, permission=True, network=Wi-Fi
+  -> DEFERRED; retry when constraints improve
+RESULT: processed=10, deferrals=10, retries=10, cancelled=0, delivered=0
+
+COMPARISON
+same_input_size=10 records; easy_delivered=10; hard_delivered=0
+easy_deferrals=0; hard_deferrals=10
